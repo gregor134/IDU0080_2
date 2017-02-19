@@ -44,6 +44,11 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 			throw new HinnakiriNegativeNumberException();
 		}
 		
+		if (maximumPrice == 0) {
+			logger.info("Number is zero.");
+			throw new HinnakiriZeroException();
+		}
+		
 		try {
 			GetHinnakiriResponse response = new GetHinnakiriResponse();
 			Hinnakiri hinnakiri = new Hinnakiri();

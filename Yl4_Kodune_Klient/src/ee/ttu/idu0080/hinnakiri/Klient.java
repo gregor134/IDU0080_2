@@ -36,7 +36,7 @@ public final class Klient {
 			HinnakiriService port = service.getHinnakiriPort();
 
 			//response = port.getHinnakiri("99.999");
-			response = port.getHinnakiri("-12.00");
+			response = port.getHinnakiri("0.00");
 			
 		} catch(Exception e) {
 			System.out.println(e.getMessage());

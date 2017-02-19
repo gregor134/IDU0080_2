@@ -2,13 +2,13 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 
 import javax.xml.ws.WebFault;
 
-@WebFault(name = "HinnakiriFault")
+@WebFault(name = "HinnakiriNumberFormatFault")
 public class HinnakiriNumberFormatException extends Exception {
     
 	private HinnakiriNumberFormatFault faultInfo;
 
     public HinnakiriNumberFormatException() {
-    	this("Number is in an incorrect format");
+    	this("Number is in an incorrect format.");
     }
 
     public HinnakiriNumberFormatException(String message) {

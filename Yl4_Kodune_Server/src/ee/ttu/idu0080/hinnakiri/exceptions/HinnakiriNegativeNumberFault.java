@@ -2,7 +2,7 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "HinnakiriFault")
+@XmlRootElement(name = "HinnakiriNegativeNumberFault")
 public class HinnakiriNegativeNumberFault {
 	private String message;
 
