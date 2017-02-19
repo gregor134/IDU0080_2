@@ -5,7 +5,7 @@ import javax.xml.ws.WebFault;
 @WebFault(name = "HinnakiriFault")
 public class HinnakiriNumberFormatException extends Exception {
     
-	private HinnakiriFault faultInfo;
+	private HinnakiriNumberFormatFault faultInfo;
 
     public HinnakiriNumberFormatException() {
     	this("Number is in an incorrect format");
@@ -15,18 +15,18 @@ public class HinnakiriNumberFormatException extends Exception {
         super(message);
         
         // Set fault message
-        faultInfo = new HinnakiriFault();
+        faultInfo = new HinnakiriNumberFormatFault();
         faultInfo.setMessage(message);
     }
     
     public HinnakiriNumberFormatException(String message, 
-    		HinnakiriFault faultInfo) {
+    		HinnakiriNumberFormatFault faultInfo) {
         super(message);
         
         this.faultInfo = faultInfo;
     }
 
-    public HinnakiriFault getFaultInfo() {
+    public HinnakiriNumberFormatFault getFaultInfo() {
         return faultInfo;
     }
 }

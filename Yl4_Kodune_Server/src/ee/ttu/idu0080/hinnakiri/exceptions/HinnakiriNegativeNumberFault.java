@@ -3,10 +3,10 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "HinnakiriFault")
-public class HinnakiriNumberFormatFault {
+public class HinnakiriNegativeNumberFault {
 	private String message;
 
-    public HinnakiriNumberFormatFault() { }
+    public HinnakiriNegativeNumberFault() { }
 
     public String getMessage() {
         return message;

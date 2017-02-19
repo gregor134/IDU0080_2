@@ -18,7 +18,7 @@ import ee.ttu.idu0080.hinnakiri.exceptions.*;
  
 @WebService(targetNamespace = "http://www.ttu.ee/idu0080/hinnakiri/wsdl/1.0", name = "HinnakiriService")
 @XmlSeeAlso({ee.ttu.idu0080.hinnakiri.types.ObjectFactory.class,
-	HinnakiriFault.class})
+	HinnakiriNumberFormatFault.class, HinnakiriNegativeNumberFault.class})
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public interface HinnakiriService {
 

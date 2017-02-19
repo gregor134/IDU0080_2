@@ -5,17 +5,17 @@ import javax.xml.ws.WebFault;
 @WebFault(name = "HinnakiriFault")
 public class HinnakiriNegativeNumberException extends RuntimeException {
     
-	private HinnakiriFault faultInfo;
+	private HinnakiriNegativeNumberFault faultInfo;
 
     public HinnakiriNegativeNumberException() {
         super("Number is negative.");
         
         // Set fault message
-        faultInfo = new HinnakiriFault();
-        faultInfo.setMessage("Number is negative.");
+        faultInfo = new HinnakiriNegativeNumberFault();
+        faultInfo.setMessage("Number is negative");
     }
 
-    public HinnakiriFault getFaultInfo() {
+    public HinnakiriNegativeNumberFault getFaultInfo() {
         return faultInfo;
     }
 }
