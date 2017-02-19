@@ -28,7 +28,7 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 			.getLogger(HinnakiriServiceImpl.class.getName());
 
 	public GetHinnakiriResponse getHinnakiri(java.lang.String parameters) 
-	throws HinnakiriNumberFormatException {
+	throws Exception {
 		logger.info("Executing operation getHinnakiri");
 		
 		Double maximumPrice;
@@ -37,6 +37,11 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 			maximumPrice = Double.parseDouble(parameters);
 		} catch (NumberFormatException e) {
 			throw new HinnakiriNumberFormatException();
+		}
+		
+		if (maximumPrice < 0) {
+			logger.info("Number is negative.");
+			throw new HinnakiriNegativeNumberException();
 		}
 		
 		try {
@@ -53,7 +58,7 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 				hinnakirjaRidaList.add(createHinnakirjaRida(3, "Kobras", "923.00", "RBL"));
 			if(maximumPrice >= 89.00)
 				hinnakirjaRidaList.add(createHinnakirjaRida(4, "Kakaduu", "89.00", "USD"));
-
+			
 			hinnakiri.getHinnakirjaRida().addAll(hinnakirjaRidaList);
 
 			response.setHinnakiri(hinnakiri);

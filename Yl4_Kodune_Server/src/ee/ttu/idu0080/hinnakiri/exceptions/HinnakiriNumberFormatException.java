@@ -2,10 +2,10 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 
 import javax.xml.ws.WebFault;
 
-@WebFault(name = "HinnakiriNumberFormatFault")
+@WebFault(name = "HinnakiriFault")
 public class HinnakiriNumberFormatException extends Exception {
     
-	private HinnakiriNumberFormatFault faultInfo;
+	private HinnakiriFault faultInfo;
 
     public HinnakiriNumberFormatException() {
     	this("Number is in an incorrect format");
@@ -15,18 +15,18 @@ public class HinnakiriNumberFormatException extends Exception {
         super(message);
         
         // Set fault message
-        faultInfo = new HinnakiriNumberFormatFault();
+        faultInfo = new HinnakiriFault();
         faultInfo.setMessage(message);
     }
     
     public HinnakiriNumberFormatException(String message, 
-    		HinnakiriNumberFormatFault faultInfo) {
+    		HinnakiriFault faultInfo) {
         super(message);
         
         this.faultInfo = faultInfo;
     }
 
-    public HinnakiriNumberFormatFault getFaultInfo() {
+    public HinnakiriFault getFaultInfo() {
         return faultInfo;
     }
 }

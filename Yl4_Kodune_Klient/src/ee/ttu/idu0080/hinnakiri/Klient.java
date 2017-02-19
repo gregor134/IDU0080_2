@@ -10,6 +10,7 @@ import java.net.URL;
 
 import javax.xml.ws.soap.SOAPFaultException;
 
+import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNegativeNumberException;
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNumberFormatException;
 import ee.ttu.idu0080.hinnakiri.service.HinnakiriService;
 import ee.ttu.idu0080.hinnakiri.service.HinnakiriService_Service;
@@ -34,11 +35,12 @@ public final class Klient {
 					wsdlURL);
 			HinnakiriService port = service.getHinnakiriPort();
 
-			response = port.getHinnakiri("99.999");
+			//response = port.getHinnakiri("99.999");
+			response = port.getHinnakiri("-12.00");
 			
-		} catch(HinnakiriNumberFormatException e) {
-			System.out.println("Hind ei ole numbrilises formaadis");
-		} 
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 
 		if(response == null)
 			return;
