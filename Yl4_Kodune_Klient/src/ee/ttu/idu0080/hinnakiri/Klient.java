@@ -40,9 +40,14 @@ public final class Klient {
 						wsdlURL);
 				HinnakiriService port = service.getHinnakiriPort();
 
-				//response = port.getHinnakiri("99.999");
-				//response = port.getHinnakiri("0.00");
-				response = port.getHinnakiri("1.1234");
+				response = port.getHinnakiri("12.00A");
+				//response = port.getHinnakiri("12A");
+				//response = port.getHinnakiri("12.34");
+				//response = port.getHinnakiri("12.340");
+				//response = port.getHinnakiri("12.345");
+				//response = port.getHinnakiri("12.0");
+				//response = port.getHinnakiri("-12.00");
+				//response = port.getHinnakiri("0.000");
 				
 				break;
 			} catch(WebServiceException e) {
