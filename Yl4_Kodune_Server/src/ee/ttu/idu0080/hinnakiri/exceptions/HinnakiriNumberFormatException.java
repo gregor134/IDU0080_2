@@ -8,7 +8,7 @@ public class HinnakiriNumberFormatException extends Exception {
 	private HinnakiriNumberFormatFault faultInfo;
 
     public HinnakiriNumberFormatException() {
-    	this("Number is in an incorrect format.");
+    	this("Number is in an incorrect format");
     }
 
     public HinnakiriNumberFormatException(String message) {

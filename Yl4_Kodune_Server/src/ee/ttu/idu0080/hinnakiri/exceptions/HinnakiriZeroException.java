@@ -3,19 +3,30 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 import javax.xml.ws.WebFault;
 
 @WebFault(name = "HinnakiriZeroFault")
-public class HinnakiriZeroException extends RuntimeException {
-
-	private HinnakiriNegativeNumberFault faultInfo;
-
+public class HinnakiriZeroException extends Exception {
+    
+	private HinnakiriZeroFault faultInfo;
+	
 	public HinnakiriZeroException() {
-		super("Number is zero.");
-
-		// Set fault message
-		faultInfo = new HinnakiriNegativeNumberFault();
-		faultInfo.setMessage("Number is zero.");
+		this("Number is zero");
 	}
 
-	public HinnakiriNegativeNumberFault getFaultInfo() {
-		return faultInfo;
-	}
+    public HinnakiriZeroException(String message) {
+        super(message);
+        
+        // Set fault message
+        faultInfo = new HinnakiriZeroFault();
+        faultInfo.setMessage(message);
+    }
+    
+    public HinnakiriZeroException(String message, 
+    		HinnakiriZeroFault faultInfo) {
+    	super(message);
+    	
+    	this.faultInfo = faultInfo;
+    }
+
+    public HinnakiriZeroFault getFaultInfo() {
+        return faultInfo;
+    }
 }

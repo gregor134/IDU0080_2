@@ -8,10 +8,10 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.xml.ws.soap.SOAPFaultException;
-
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNegativeNumberException;
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNumberFormatException;
+import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriPrecisionException;
+import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriZeroException;
 import ee.ttu.idu0080.hinnakiri.service.HinnakiriService;
 import ee.ttu.idu0080.hinnakiri.service.HinnakiriService_Service;
 import ee.ttu.idu0080.hinnakiri.types.GetHinnakiriResponse;
@@ -36,10 +36,17 @@ public final class Klient {
 			HinnakiriService port = service.getHinnakiriPort();
 
 			//response = port.getHinnakiri("99.999");
-			response = port.getHinnakiri("0.00");
+			//response = port.getHinnakiri("0.00");
+			response = port.getHinnakiri("1.1234");
 			
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
+		} catch(HinnakiriNumberFormatException e) {
+			System.out.println("Number on vales formaadis!");
+		} catch(HinnakiriNegativeNumberException e) {
+			System.out.println("Number ei tohi olla negatiivne!");
+		} catch(HinnakiriZeroException e) {
+			System.out.println("Number ei tohi olla null!");
+		} catch(HinnakiriPrecisionException e) {
+			System.out.println("Number on liiga täpne!");
 		}
 
 		if(response == null)

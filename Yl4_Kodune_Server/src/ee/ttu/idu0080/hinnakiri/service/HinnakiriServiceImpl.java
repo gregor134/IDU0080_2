@@ -28,7 +28,7 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 			.getLogger(HinnakiriServiceImpl.class.getName());
 
 	public GetHinnakiriResponse getHinnakiri(java.lang.String parameters) 
-	throws Exception {
+	throws HinnakiriNegativeNumberException, HinnakiriNumberFormatException, HinnakiriZeroException, HinnakiriPrecisionException {
 		logger.info("Executing operation getHinnakiri");
 		
 		Double maximumPrice;
@@ -47,6 +47,12 @@ public class HinnakiriServiceImpl implements HinnakiriService {
 		if (maximumPrice == 0) {
 			logger.info("Number is zero.");
 			throw new HinnakiriZeroException();
+		}
+		
+		int decimals = maximumPrice.toString().length()-(maximumPrice.toString().indexOf(".")+1);
+		if (decimals > 2) {
+			logger.info("Precision is " + String.valueOf(decimals - 2) + "(" + String.valueOf(decimals) + ") over the allowed amount of 2");
+			throw new HinnakiriPrecisionException();
 		}
 		
 		try {

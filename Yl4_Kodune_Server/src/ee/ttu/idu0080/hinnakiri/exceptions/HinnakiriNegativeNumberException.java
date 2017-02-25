@@ -3,19 +3,30 @@ package ee.ttu.idu0080.hinnakiri.exceptions;
 import javax.xml.ws.WebFault;
 
 @WebFault(name = "HinnakiriNegativeNumberFault")
-public class HinnakiriNegativeNumberException extends RuntimeException {
-
+public class HinnakiriNegativeNumberException extends Exception {
+    
 	private HinnakiriNegativeNumberFault faultInfo;
-
+	
 	public HinnakiriNegativeNumberException() {
-		super("Number is negative.");
-
-		// Set fault message
-		faultInfo = new HinnakiriNegativeNumberFault();
-		faultInfo.setMessage("Number is negative.");
+		this("Number is negative");
 	}
 
-	public HinnakiriNegativeNumberFault getFaultInfo() {
-		return faultInfo;
-	}
+    public HinnakiriNegativeNumberException(String message) {
+        super(message);
+        
+        // Set fault message
+        faultInfo = new HinnakiriNegativeNumberFault();
+        faultInfo.setMessage(message);
+    }
+    
+    public HinnakiriNegativeNumberException(String message, 
+    		HinnakiriNegativeNumberFault faultInfo) {
+    	super(message);
+    	
+    	this.faultInfo = faultInfo;
+    }
+
+    public HinnakiriNegativeNumberFault getFaultInfo() {
+        return faultInfo;
+    }
 }
