@@ -8,6 +8,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.xml.ws.WebServiceException;
+
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNegativeNumberException;
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNumberFormatException;
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriPrecisionException;
@@ -30,24 +32,42 @@ public final class Klient {
 		URL wsdlURL = parseArguments(args);
 
 		GetHinnakiriResponse response = null;
-		try {
-			HinnakiriService_Service service = new HinnakiriService_Service(
-					wsdlURL);
-			HinnakiriService port = service.getHinnakiriPort();
+		
+		int resets = 10;
+		for(int i = 0; i <= resets; i++) {
+			try {
+				HinnakiriService_Service service = new HinnakiriService_Service(
+						wsdlURL);
+				HinnakiriService port = service.getHinnakiriPort();
 
-			//response = port.getHinnakiri("99.999");
-			//response = port.getHinnakiri("0.00");
-			response = port.getHinnakiri("1.1234");
-			
-		} catch(HinnakiriNumberFormatException e) {
-			System.out.println("Number on vales formaadis!");
-		} catch(HinnakiriNegativeNumberException e) {
-			System.out.println("Number ei tohi olla negatiivne!");
-		} catch(HinnakiriZeroException e) {
-			System.out.println("Number ei tohi olla null!");
-		} catch(HinnakiriPrecisionException e) {
-			System.out.println("Number on liiga täpne!");
+				//response = port.getHinnakiri("99.999");
+				//response = port.getHinnakiri("0.00");
+				response = port.getHinnakiri("1.1234");
+				
+				break;
+			} catch(WebServiceException e) {
+				if (i < 10) {
+					System.out.println("Teenusega ei saa ühendust, proovime uuesti ... #" + (i+1));
+					continue;
+				} else {
+					System.out.println("Teenusega ei õnnestunud ühenduda pärast " + resets + ". katset.");
+					
+				}
+			} catch(HinnakiriNumberFormatException e) {
+				System.out.println("Number on vales formaadis!");
+				break;
+			} catch(HinnakiriNegativeNumberException e) {
+				System.out.println("Number ei tohi olla negatiivne!");
+				break;
+			} catch(HinnakiriZeroException e) {
+				System.out.println("Number ei tohi olla null!");
+				break;
+			} catch(HinnakiriPrecisionException e) {
+				System.out.println("Number on liiga täpne!");
+				break;
+			}
 		}
+		
 
 		if(response == null)
 			return;
